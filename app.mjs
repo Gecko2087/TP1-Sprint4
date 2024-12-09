@@ -5,7 +5,7 @@ import methodOverride from 'method-override';
 import { fileURLToPath } from 'url';
 import { connectDB } from './src/config/dbConfig.mjs';
 import router from './src/routes/superHeroRoutes.mjs';
-import { obtenerTodosLosSuperHeroes } from './src/services/SuperHeroService.mjs'; // Asegúrate de que esta ruta sea correcta
+import { obtenerTodosLosSuperHeroes } from './src/services/SuperHeroService.mjs';
 import flash from 'connect-flash';
 import session from 'express-session';
 import expressLayouts from 'express-ejs-layouts';
