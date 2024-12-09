@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Guerrero Z</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-blue-900 via-black to-gray-900 min-h-screen flex items-center justify-center text-white">
+    <div class="w-full max-w-lg p-8 rounded-lg mt-28">
+        <h1 class="text-3xl font-extrabold text-yellow-300 mb-6 text-center bg-gray-900 bg-opacity-90">Editar Guerrero Z</h1>
+        <form class="form-container p-8" id="superheroForm" action="/api/heroes/edit/<%= superheroe.id %>?_method=PUT" method="POST">
+            <div class="mb-4">
+                <label for="nombreSuperHeroe" class="block text-yellow-300 font-bold mb-2">Alias del Guerrero:</label>
+                <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" value="<%= superheroe.nombreSuperHeroe %>" required minlength="3" maxlength="60" class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="mb-4">
+                <label for="nombreReal" class="block text-yellow-300 font-bold mb-2">Nombre Real:</label>
+                <input type="text" id="nombreReal" name="nombreReal" value="<%= superheroe.nombreReal %>" required minlength="3" maxlength="60" class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="mb-4">
+                <label for="edad" class="block text-yellow-300 font-bold mb-2">Edad:</label>
+                <input type="number" id="edad" name="edad" value="<%= superheroe.edad %>" required min="0" class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="mb-4">
+                <label for="planetaOrigen" class="block text-yellow-300 font-bold mb-2">Planeta de Origen:</label>
+                <input type="text" id="planetaOrigen" name="planetaOrigen" value="<%= superheroe.planetaOrigen %>" required class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="mb-4">
+                <label for="debilidad" class="block text-yellow-300 font-bold mb-2">Debilidad:</label>
+                <input type="text" id="debilidad" name="debilidad" value="<%= superheroe.debilidad %>" required class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="mb-4">
+                <label for="poderes" class="block text-yellow-300 font-bold mb-2">Poderes (separados por comas):</label>
+                <input type="text" id="poderes" name="poderes" value="<%= superheroe.poderes.join(', ') %>" required class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="mb-4">
+                <label for="aliados" class="block text-yellow-300 font-bold mb-2">Aliados:</label>
+                <input type="text" id="aliados" name="aliados" value="<%= superheroe.aliados.join(', ') %>" required class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="mb-4">
+                <label for="enemigos" class="block text-yellow-300 font-bold mb-2">Enemigos:</label>
+                <input type="text" id="enemigos" name="enemigos" value="<%= superheroe.enemigos.join(', ') %>" required class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div class="flex justify-between">
+                <a href="/dashboard" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">Cancelar</a>
+                <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">Actualizar</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Guerreros Z</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-blue-900 via-black to-gray-900 text-gray-200 min-h-screen">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-800 via-blue-700 to-blue-600 p-2 shadow-md">
+    <div class="container mx-auto flex justify-between items-center mt-28">
+      <h1 class="text-white text-2xl font-extrabold tracking-wide">
+        Dashboard de <span class="text-yellow-300">Guerreros Z</span>
+      </h1>
+      <a href="/addSuperhero" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">
+        + Nuevo Guerrero
+      </a>
+    </div>
+  </header>
+
+  <!-- Flash Message -->
+  <div class="container mx-auto mt-6">
+    <% if (success_msg && success_msg.length > 0) { %>
+      <div id="success-message" class="flex items-center justify-between bg-green-600 text-white py-4 px-6 rounded-lg shadow-lg">
+        <div class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM10 17l-5-5 1.414-1.414L10 14.172l7.586-7.586L19 8l-9 9z" />
+          </svg>
+          <span><%= success_msg[0] %></span>
+        </div>
+        <button id="close-btn" class="text-2xl font-bold hover:text-gray-300">&times;</button>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container mx-auto p-2">
+    <h2 class="text-3xl font-bold text-yellow-300 mb-6 bg-gray-700 bg-opacity-60">Héroes del Universo</h2>
+    <div class="overflow-x-auto rounded-lg shadow-lg">
+      <table class="w-full bg-gray-800 bg-opacity-90 text-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-blue-700">
+          <tr>
+            <th class="py-3 px-6 text-left">Nombre</th>
+            <th class="py-3 px-6 text-left">Alias</th>
+            <th class="py-3 px-6 text-left">Edad</th>
+            <th class="py-3 px-6 text-left">Planeta</th>
+            <th class="py-3 px-6 text-left">Debilidad</th>
+            <th class="py-3 px-6 text-left">Poderes</th>
+            <th class="py-3 px-6 text-left">Aliados</th>
+            <th class="py-3 px-6 text-left">Enemigos</th>
+            <th class="py-3 px-6 text-left">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% superheroes.forEach(function(superheroe) { %>
+            <tr class="hover:bg-gray-700 transition duration-300">
+              <td class="py-3 px-6"><%= superheroe.nombreReal %></td>
+              <td class="py-3 px-6"><%= superheroe.nombreSuperHeroe %></td>
+              <td class="py-3 px-6"><%= superheroe.edad %></td>
+              <td class="py-3 px-6"><%= superheroe.planetaOrigen %></td>
+              <td class="py-3 px-6"><%= superheroe.debilidad %></td>
+              <td class="py-3 px-6"><%= superheroe.poderes.join(', ') %></td>
+              <td class="py-3 px-6"><%= superheroe.aliados.join(', ') %></td>
+              <td class="py-3 px-6"><%= superheroe.enemigos.join(', ') %></td>
+              <td class="py-3 px-6 flex space-x-2">
+                <a href="/api/editSuperhero/<%= superheroe.id %>" class="text-blue-500 hover:text-blue-400 transition duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l4-4m0 0l-4-4m4 4H3" />
+                  </svg>
+                </a>
+                <form action="/api/heroes/delete/<%= superheroe.id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este guerrero?');">
+                  <button type="submit" class="text-red-500 hover:text-red-400 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const closeButton = document.getElementById('close-btn');
+      if (closeButton) {
+        closeButton.addEventListener('click', function () {
+          const messageDiv = document.getElementById('success-message');
+          if (messageDiv) {
+            messageDiv.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

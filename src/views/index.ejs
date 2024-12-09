@@ -1,0 +1,59 @@
+<div class="main-container relative">
+  <!-- <img src="/images/background_goku-ultra-instinct.jpg" alt="Dragon Ball Super Background" class="max-w-full h-auto call-main"> -->
+  <p class="overlay-text">¡Descubre los secretos del Torneo del Poder y los desafíos que enfrentan los Guerreros Z en su lucha por salvar el multiverso!</p>
+</div>
+
+<section class="py-20" id="batallas-epicas">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-12 neon-text">Guerreros Destacados</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="card">
+        <h3 class="text-xl font-semibold">Goku</h3>
+        <img class="mt-4" src="/images/goku.jpg" alt="Goku" style="width: 100%; height: 300px; object-fit: cover;">
+        <p class="mt-4 text-left">
+          Conocido como el protector de la Tierra, Goku siempre busca superar sus límites. Su dominio del Ultra Instinto lo ha convertido en un guerrero formidable en el Torneo del Poder.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <h3 class="text-xl font-semibold">Vegeta</h3>
+        <img class="mt-4" src="/images/vegeta.jpg" alt="Vegeta" style="width: 100%; height: 300px; object-fit: cover;">
+        <p class="mt-4 text-left">
+          Vegeta, el orgulloso príncipe Saiyajin, combina su poder con una determinación feroz. Su transformación en Super Saiyajin Blue lo coloca entre los guerreros más fuertes del universo.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <h3 class="text-xl font-semibold">Beerus</h3>
+        <img class="mt-4" src="/images/beerus.jpg" alt="Beerus" style="width: 100%; height: 300px; object-fit: cover;">
+        <p class="mt-4 text-left">
+          Como el Dios de la Destrucción del Universo 7, Beerus es temido por su inmenso poder y carácter impredecible. Su relación con Goku y Vegeta trae equilibrio y caos al mismo tiempo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const xPercent = (x / rect.width - 0.5) * 20;
+    const yPercent = (y / rect.height - 0.5) * 20;
+
+    card.style.transform = `rotateX(${-yPercent}deg) rotateY(${xPercent}deg) scale(1.05)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
